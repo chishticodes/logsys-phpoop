@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,8 +9,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <title>sign-up and log-in form</title>
 </head>
 
@@ -14,8 +17,7 @@
   <nav class="navbar navbar-expand-sm navbar-light bg-light mb-4">
     <div class="container">
       <a class="navbar-brand" href="#">Bilal Chishti</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -31,8 +33,15 @@
           </li>
         </ul>
         <ul class="navbar-nav me">
-          <li class="nav-item"><a href="#">sign-up</a></li>
-          <li class="nav-item"><a href="#" class="header-login-a">log-in</a></li>
+          <?php if (isset($_SESSION['userid'])) : ?>
+            <li class="nav-item"><a href="#"><?php echo $_SESSION['usersuid'] ?></a></li>
+            <li class="nav-item"><a href="includes/logout.inc.php" class="header-login-a">log out</a></li>
+          <?php else : ?>
+
+
+            <li class="nav-item"><a href="#">sign-up</a></li>
+            <li class="nav-item"><a href="#" class="header-login-a">log-in</a></li>
+          <?php endif ?>
         </ul>
       </div>
     </div>
@@ -55,8 +64,7 @@
           </div>
           <div class="mb-3">
             <label for="pwdrepeat" class="form-label">Repeat Password</label>
-            <input type="password" class="form-control" id="pwdrepeat" name="pwdrepeat"
-              placeholder="Re-Enter your password">
+            <input type="password" class="form-control" id="pwdrepeat" name="pwdrepeat" placeholder="Re-Enter your password">
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
@@ -85,7 +93,7 @@
             <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter your password">
           </div>
           <div class="mb-3">
-            <button class="btn btn-success" type="submit" name="submit">sign up</button>
+            <button class="btn btn-success" type="submit" name="submit">Log in</button>
             <!-- <input type="submit" name="submit" value="Send" class="btn btn-dark w-100"> -->
           </div>
         </form>
@@ -98,9 +106,7 @@
     Copyright &copy; 2023
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 
